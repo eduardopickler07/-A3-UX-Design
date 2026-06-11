@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoreaHub</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">KoreaHub</a>
+        <ul class="navbar-nav ms-3">
+            <li class="nav-item"><a class="nav-link" href="#">Notícias</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Trends</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Comunidade</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+            <li class="nav-item">
+                <a class="nav-link navbar-icon-btn" href="#" onclick="openAuthModal(); return false;" id="nav-profile-btn">
+                    <i class="fa-regular fa-circle-user" id="nav-profile-icon"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Trending Agora — full width, fora do container -->
+<div class="trending-section">
+    <div class="trending-inner">
+        <h2 class="trending-title">
+            <span class="arrow-icon">↗</span>
+            🔥 Trending Agora
+        </h2>
+        <div class="row mt-2 g-3">
+            <div class="col-md-4">
+                <div class="trend-card" onclick="openNewsModal(trendingNews[0])">
+                    <img src="https://ffw.uol.com.br/wp-content/uploads/2023/08/new-jeans-9.jpg" alt="ATEEZ">
+                    <div class="trend-card-overlay"></div>
+                    <span class="trend-badge">Comeback</span>
+                    <div class="trend-card-body">
+                        <p class="trend-artist">ATEEZ</p>
+                        <p class="trend-headline">ATEEZ lança "GOLDEN HOUR: Part.5" em 26 de junho</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="trend-card" onclick="openNewsModal(trendingNews[1])">
+                    <img src="https://cdn.shopify.com/s/files/1/0469/3927/5428/files/Banner_2993ba90-7985-45e1-8636-18283e692fe1.png?v=1692708550" alt="aespa">
+                    <div class="trend-card-overlay"></div>
+                    <span class="trend-badge">Award</span>
+                    <div class="trend-card-body">
+                        <p class="trend-artist">aespa</p>
+                        <p class="trend-headline">aespa vence no Music Bank com "WDA"</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="trend-card" onclick="openNewsModal(trendingNews[2])">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Blackpink_Pink_Carpet_Event_1.jpg" alt="BLACKPINK">
+                    <div class="trend-card-overlay"></div>
+                    <span class="trend-badge">Record</span>
+                    <div class="trend-card-body">
+                        <p class="trend-artist">BLACKPINK</p>
+                        <p class="trend-headline">DEADLINE bate recorde histórico no Hanteo Chart</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+
+    <!-- Últimas Notícias -->
+    <div class="mt-4">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <h2 class="news-section-title">
+                <span class="icon-wrap">🗂️ 📰</span>
+                Últimas Notícias
+            </h2>
+            <span class="news-page-indicator" id="news-page-indicator">1 / 2</span>
+        </div>
+        <div class="news-filters">
+            <button class="news-filter-btn active" data-filter="todos">Todos</button>
+            <button class="news-filter-btn" data-filter="comebacks">Comebacks</button>
+            <button class="news-filter-btn" data-filter="debuts">Debuts</button>
+            <button class="news-filter-btn" data-filter="awards">Awards</button>
+            <button class="news-filter-btn" data-filter="fashion">Fashion</button>
+            <button class="news-filter-btn" data-filter="variety">Variety</button>
+        </div>
+        <div class="news-carousel-wrapper">
+            <button class="news-nav-btn news-nav-prev" id="news-prev" onclick="newsPage(-1)" aria-label="Anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="row g-3" id="news-grid"></div>
+            <button class="news-nav-btn news-nav-next" id="news-next" onclick="newsPage(1)" aria-label="Próximo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+        </div>
+    </div>
+
+</div><!-- fim container notícias -->
+
+<!-- Reels em Alta -->
+<div class="reels-section mt-4">
+    <div style="max-width:1320px; margin:0 auto; padding:0 24px;">
+        <h2 class="reels-title">
+            <span class="reels-icon">▷</span>
+            <span>🎬</span>
+            Reels em Alta
+        </h2>
+    </div>
+    <div class="reels-scroll mt-2">
+
+        <!-- CARD 1 — com link para Instagram -->
+        <a class="reel-card-link" href="https://www.instagram.com/reels/DVSSFUQk0A1/" target="_blank" rel="noopener noreferrer">
+            <div class="reel-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcs9eB4FZrhvybgfFt9Rrz7joSbm2hc0w7aw&s" alt="Reel"><span class="reel-duration">0:30</span><div class="reel-info"><p class="reel-name">BLACKPINK — GO MV</p><div class="reel-stats"><span><i class="fa-regular fa-eye"></i> 1.5M</span><span><i class="fa-regular fa-heart"></i> 120k</span></div></div></div>
+        </a>
+
+        <!-- CARD 2 — com link para Instagram -->
+        <a class="reel-card-link" href="https://www.instagram.com/reels/DUZ2m5YDP8l/" target="_blank" rel="noopener noreferrer">
+            <div class="reel-card"><img src="https://cdn.discordapp.com/attachments/1513642753219887172/1514453910822064239/image.png?ex=6a2b6c9d&is=6a2a1b1d&hm=fad8a6746248c031e9f6422443108737789c45e7c26c4961e38b8efdac739c78&" alt="Reel"><span class="reel-duration">0:25</span><div class="reel-info"><p class="reel-name">ATEEZ — Adrenaline</p><div class="reel-stats"><span><i class="fa-regular fa-eye"></i> 3.2M</span><span><i class="fa-regular fa-heart"></i> 250k</span></div></div></div>
+        </a>
+
+        <!-- CARD 3 — com link para Instagram -->
+        <a class="reel-card-link" href="https://www.instagram.com/reels/DPwxxuYjcBb/" target="_blank" rel="noopener noreferrer">
+            <div class="reel-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQGXMMjqSC0go1SwkwvKj4h0FrHphXr0t1pg&s" alt="Reel"><span class="reel-duration">0:39</span><div class="reel-info"><p class="reel-name">BTS — Yet To Come</p><div class="reel-stats"><span><i class="fa-regular fa-eye"></i> 890k</span><span><i class="fa-regular fa-heart"></i> 75k</span></div></div></div>
+        </a>
+
+        <!-- CARD 4 — com link para Instagram -->
+        <a class="reel-card-link" href="https://www.instagram.com/reels/DYhdItMzIji/" target="_blank" rel="noopener noreferrer">
+            <div class="reel-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3zi0CMjdBTQAlrmWqoTqIqQt4yg5DTc7-Vg&s" alt="Reel"><span class="reel-duration">0:42</span><div class="reel-info"><p class="reel-name">aespa — WDA Dance</p><div class="reel-stats"><span><i class="fa-regular fa-eye"></i> 4.1M</span><span><i class="fa-regular fa-heart"></i> 320k</span></div></div></div>
+        </a>
+
+    </div>
+</div>
+
+<!-- Comunidade -->
+<div class="container">
+    <div class="row mt-4 g-4">
+
+        <!-- Coluna esquerda: Comunidade -->
+        <div class="col-lg-8">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <h2 class="community-title">
+                    <span>👥</span><span><i class="fa-regular fa-comment"></i></span> Comunidade
+                </h2>
+                <button class="new-post-btn" onclick="openNewPostModal()">
+                    <span>+</span> Nova Publicação
+                </button>
+            </div>
+
+            <p class="community-sub mt-4"><i class="fa-regular fa-comment"></i> Discussões em Alta</p>
+
+            <!-- Posts renderizados via JS -->
+            <div id="posts-container" class="mt-3" style="display:flex;flex-direction:column;gap:14px;"></div>
+        </div>
+
+        <!-- Coluna direita -->
+        <div class="col-lg-4">
+            <div class="votacao-card">
+                <h5 class="votacao-title">🏆 Votação da Semana</h5>
+                <p class="votacao-question">Melhor comeback de 2026 até agora?</p>
+                <div class="voto-item">
+                    <div class="voto-label"><span>BLACKPINK – DEADLINE</span><span>42%</span></div>
+                    <div class="voto-bar"><div class="voto-fill" style="width:42%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
+                </div>
+                <div class="voto-item mt-4">
+                    <div class="voto-label"><span>ATEEZ – GOLDEN HOUR P.5</span><span>35%</span></div>
+                    <div class="voto-bar"><div class="voto-fill" style="width:35%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
+                </div>
+                <div class="voto-item mt-4">
+                    <div class="voto-label"><span>aespa – WDA</span><span>23%</span></div>
+                    <div class="voto-bar"><div class="voto-fill" style="width:23%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
+                </div>
+                <p class="votacao-total">2.341 votos totais</p>
+            </div>
+
+            <div class="contributors-card mt-4">
+                <h5 class="contributors-title">Top Contributors</h5>
+                <div class="contributor-item"><span>👑 KpopQueen</span><span class="contributor-pts">2450 pts</span></div>
+                <div class="contributor-item"><span>🔥 ArmyLeader</span><span class="contributor-pts">2180 pts</span></div>
+                <div class="contributor-item"><span>⭐ StanTXT</span><span class="contributor-pts">1890 pts</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Nova Publicação -->
+<div class="modal-overlay" id="new-post-modal" onclick="closeModalIfOverlay(event)">
+    <div class="modal-box">
+        <div class="modal-header">
+            <span class="modal-title">✏️ Nova Publicação</span>
+            <button class="modal-close" onclick="closeNewPostModal()">✕</button>
+        </div>
+        <textarea class="modal-textarea" id="post-body-input" placeholder="O que você quer compartilhar? (opcional)"></textarea>
+        <div class="modal-tag-select" id="tag-selector">
+            <button class="tag-btn" data-tag="discussao">Discussão</button>
+            <button class="tag-btn" data-tag="teoria">Teoria</button>
+            <button class="tag-btn" data-tag="colecao">Coleção</button>
+            <button class="tag-btn" data-tag="review">Review</button>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel-modal" onclick="closeNewPostModal()">Cancelar</button>
+            <button class="btn-post-modal" id="btn-submit-post" onclick="submitNewPost()">Publicar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Auth (Login / Registro) -->
+<div class="auth-modal-overlay" id="auth-modal" onclick="closeAuthIfOverlay(event)">
+    <div class="auth-modal-box">
+        <button class="auth-modal-close" onclick="closeAuthModal()">✕</button>
+
+        <!-- Logo topo -->
+        <div class="auth-logo">KoreaHub</div>
+
+        <!-- Tabs -->
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Entrar</button>
+            <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Criar conta</button>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="auth-form" id="form-login">
+            <div class="auth-input-wrap">
+                <i class="fa-regular fa-envelope auth-input-icon"></i>
+                <input class="auth-input" id="login-email" type="email" placeholder="E-mail">
+            </div>
+            <div class="auth-input-wrap">
+                <i class="fa-solid fa-lock auth-input-icon"></i>
+                <input class="auth-input" id="login-password" type="password" placeholder="Senha">
+                <button class="auth-eye-btn" onclick="togglePassword('login-password', this)" tabindex="-1">
+                    <i class="fa-regular fa-eye"></i>
+                </button>
+            </div>
+            <button class="auth-submit-btn" onclick="handleLogin()">Entrar</button>
+            <p class="auth-switch">Não tem conta? <a href="#" onclick="switchAuthTab('register');return false;">Criar agora</a></p>
+        </div>
+
+        <!-- REGISTRO -->
+        <div class="auth-form" id="form-register" style="display:none;">
+            <div class="auth-input-wrap">
+                <i class="fa-regular fa-user auth-input-icon"></i>
+                <input class="auth-input" id="reg-name" type="text" placeholder="Nome de usuário" maxlength="30">
+            </div>
+            <div class="auth-input-wrap">
+                <i class="fa-regular fa-envelope auth-input-icon"></i>
+                <input class="auth-input" id="reg-email" type="email" placeholder="E-mail">
+            </div>
+            <div class="auth-input-wrap">
+                <i class="fa-solid fa-lock auth-input-icon"></i>
+                <input class="auth-input" id="reg-password" type="password" placeholder="Senha (mín. 6 caracteres)">
+                <button class="auth-eye-btn" onclick="togglePassword('reg-password', this)" tabindex="-1">
+                    <i class="fa-regular fa-eye"></i>
+                </button>
+            </div>
+            <div class="auth-input-wrap">
+                <i class="fa-solid fa-lock auth-input-icon"></i>
+                <input class="auth-input" id="reg-password2" type="password" placeholder="Confirmar senha">
+                <button class="auth-eye-btn" onclick="togglePassword('reg-password2', this)" tabindex="-1">
+                    <i class="fa-regular fa-eye"></i>
+                </button>
+            </div>
+            <button class="auth-submit-btn" onclick="handleRegister()">Criar conta</button>
+            <p class="auth-switch">Já tem conta? <a href="#" onclick="switchAuthTab('login');return false;">Entrar</a></p>
+        </div>
+
+        <!-- PERFIL LOGADO -->
+        <div class="auth-form" id="form-profile" style="display:none;">
+            <div class="auth-profile-avatar">
+                <i class="fa-regular fa-circle-user"></i>
+            </div>
+            <p class="auth-profile-name" id="profile-name-display"></p>
+            <p class="auth-profile-email" id="profile-email-display"></p>
+            <div class="auth-profile-badge">✨ Membro KoreaHub</div>
+            <button class="auth-logout-btn" onclick="handleLogout()">
+                <i class="fa-solid fa-right-from-bracket"></i> Sair da conta
+            </button>
+        </div>
+
+        <div class="auth-error" id="auth-error"></div>
+    </div>
+</div>
+
+<!-- Modal Notícia -->
+<div class="news-modal-overlay" id="news-modal" onclick="closeNewsModalIfOverlay(event)">
+    <div class="news-modal-box">
+        <button class="news-modal-close" onclick="closeNewsModal()" aria-label="Fechar">✕</button>
+        <div class="news-modal-img-wrap">
+            <img id="news-modal-img" src="" alt="">
+            <div class="news-modal-img-overlay"></div>
+        </div>
+        <div class="news-modal-content">
+            <div class="news-modal-meta">
+                <span class="news-badge" id="news-modal-badge"></span>
+                <span class="news-time"><i class="fa-regular fa-clock"></i> <span id="news-modal-time"></span></span>
+            </div>
+            <h2 class="news-modal-title" id="news-modal-title"></h2>
+            <p class="news-modal-subtitle" id="news-modal-subtitle"></p>
+            <div class="news-modal-body" id="news-modal-body"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-notif" id="toast">
+    <span id="toast-msg">✓ Publicado!</span>
+</div>
+
+<footer class="text-center mt-5 p-4">
+    <span class="footer-logo">KoreaHub</span>
+    <p class="mt-2">Seu universo K-pop em um só lugar.</p>
+    <p>© 2026 KoreaHub</p>
+</footer>
+
+<script>
+/* =============================================
+   DATA
+============================================= */
+const ME = { name: 'Você', avatar: 'https://picsum.photos/seed/me/80/80' };
+
+let postIdCounter = 10;
+let commentIdCounter = 100;
+
+const INITIAL_POSTS = [
+    {
+        id: 1,
+        user: 'KpopLover_99',
+        avatar: 'https://picsum.photos/seed/user1/80/80',
+        time: '3h atrás',
+        tag: 'discussao',
+        tagLabel: 'Discussão',
+        title: 'Qual foi a melhor era do TXT?',
+        likes: 45,
+        liked: false,
+        comments: [
+            {
+                id: 1, user: 'BTSArmy2023', avatar: 'https://picsum.photos/seed/user2/80/80',
+                time: '2h atrás', text: 'Com certeza a era Minisode!! As músicas eram incríveis e o conceito visual estava no próximo nível.',
+                likes: 12, liked: false,
+                replies: [
+                    { id: 101, user: 'KpopLover_99', avatar: 'https://picsum.photos/seed/user1/80/80', time: '1h atrás', text: '@BTSArmy2023 concordo demais! Frost era um hino 🔥', likes: 5, liked: false },
+                ]
+            },
+            {
+                id: 2, user: 'NewJeansFan', avatar: 'https://picsum.photos/seed/user3/80/80',
+                time: '1h atrás', text: 'The Chaos Chapter pra mim ainda é insuperável. O lore era incrível.',
+                likes: 8, liked: false, replies: []
+            },
+        ]
+    },
+    {
+        id: 2,
+        user: 'BtsArmy2023',
+        avatar: 'https://picsum.photos/seed/user2/80/80',
+        time: '5h atrás',
+        tag: 'teoria',
+        tagLabel: 'Teoria',
+        title: 'Teorias sobre o próximo comeback do BTS',
+        likes: 67,
+        liked: false,
+        comments: [
+            {
+                id: 3, user: 'StrayKidsLover', avatar: 'https://picsum.photos/seed/user4/80/80',
+                time: '4h atrás', text: 'Eu acho que vai ter um conceito de ficção científica baseado nos clipes anteriores. Tem muitos easter eggs!',
+                likes: 22, liked: false, replies: []
+            },
+        ]
+    },
+    {
+        id: 3,
+        user: 'NewJeansFan',
+        avatar: 'https://picsum.photos/seed/user3/80/80',
+        time: '1d atrás',
+        tag: 'colecao',
+        tagLabel: 'Coleção',
+        title: 'Alguém conseguiu os photocards novos?',
+        likes: 112,
+        liked: false,
+        comments: []
+    },
+    {
+        id: 4,
+        user: 'StrayKidsLover',
+        avatar: 'https://picsum.photos/seed/user4/80/80',
+        time: '2d atrás',
+        tag: 'review',
+        tagLabel: 'Review',
+        title: 'Stray Kids no Music Bank - REACTION',
+        likes: 89,
+        liked: false,
+        comments: []
+    },
+];
+
+/* =============================================
+   RENDER ENGINE
+============================================= */
+function heartSVG() {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
+}
+
+function renderReply(reply, commentId, postId) {
+    return `
+    <div class="reply-item" id="reply-${reply.id}">
+        <img src="${reply.avatar}" class="reply-avatar" alt="${reply.user}">
+        <div class="reply-bubble">
+            <div class="reply-meta">
+                <span class="reply-user">${reply.user}</span>
+                <span class="reply-time">${reply.time}</span>
+            </div>
+            <p class="reply-text">${escapeHtml(reply.text).replace(/@(\w+)/g, '<span class="comment-mention">@$1</span>')}</p>
+            <div class="reply-actions">
+                <button class="comment-like-btn ${reply.liked ? 'liked' : ''}" onclick="toggleCommentLike(this, ${postId}, ${commentId}, ${reply.id}, true)">
+                    <span class="cheart">${reply.liked ? '♥' : '♡'}</span> <span class="clikes">${reply.likes}</span>
+                </button>
+                ${reply.user === ME.name ? `<button class="comment-delete-btn" onclick="deleteReply(${postId}, ${commentId}, ${reply.id})">🗑</button>` : ''}
+            </div>
+        </div>
+    </div>`;
+}
+
+function renderComment(comment, postId) {
+    const repliesHtml = comment.replies.map(r => renderReply(r, comment.id, postId)).join('');
+
+    return `
+    <div class="comment-item" id="comment-${comment.id}">
+        <img src="${comment.avatar}" class="comment-avatar" alt="${comment.user}">
+        <div style="flex:1">
+            <div class="comment-bubble">
+                <div class="comment-meta">
+                    <span class="comment-user">${comment.user}</span>
+                    <span class="comment-time">${comment.time}</span>
+                </div>
+                <p class="comment-text">${escapeHtml(comment.text)}</p>
+                <div class="comment-actions">
+                    <button class="comment-like-btn ${comment.liked ? 'liked' : ''}" onclick="toggleCommentLike(this, ${postId}, ${comment.id}, null, false)">
+                        <span class="cheart">${comment.liked ? '♥' : '♡'}</span> <span class="clikes">${comment.likes}</span>
+                    </button>
+                    <button class="comment-reply-btn" onclick="toggleReplyInput(${postId}, ${comment.id})">↩ Responder</button>
+                    ${comment.user === ME.name ? `<button class="comment-delete-btn" onclick="deleteComment(${postId}, ${comment.id})">🗑</button>` : ''}
+                </div>
+            </div>
+
+            <div class="replies-container" id="replies-${comment.id}">
+                ${repliesHtml}
+            </div>
+
+            <!-- Reply input -->
+            <div class="reply-input-wrap" id="reply-input-${comment.id}">
+                <img src="${ME.avatar}" class="reply-avatar" alt="Você">
+                <div class="reply-input-inner">
+                    <textarea class="reply-textarea" placeholder="Responder @${comment.user}..." rows="1"
+                        oninput="autoResize(this)"
+                        onkeydown="handleReplyKey(event, ${postId}, ${comment.id})"></textarea>
+                    <div class="reply-input-actions">
+                        <button class="btn-cancel-comment" onclick="cancelReply(${comment.id})">Cancelar</button>
+                        <button class="btn-post-comment" onclick="submitReply(${postId}, ${comment.id})">Responder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+function renderPost(post) {
+    const totalComments = post.comments.reduce((acc, c) => acc + 1 + c.replies.length, 0);
+    const commentsHtml = post.comments.map(c => renderComment(c, post.id)).join('');
+
+    return `
+    <div class="discussion-card" id="post-${post.id}">
+        <div class="disc-header" onclick="toggleComments(${post.id})">
+            <img src="${post.avatar}" class="disc-avatar" alt="${post.user}">
+            <div class="disc-body">
+                <div class="disc-meta">
+                    <span class="disc-user">${post.user}</span>
+                    <span class="disc-time">${post.time}</span>
+                    <span class="disc-badge badge-${post.tag}">${post.tagLabel}</span>
+                    ${post.user === ME.name ? `<button class="comment-delete-btn ms-auto" onclick="event.stopPropagation();deletePost(${post.id})">🗑</button>` : ''}
+                </div>
+                <p class="disc-title">${escapeHtml(post.title)}</p>
+                <div class="disc-stats" onclick="event.stopPropagation()">
+                    <button class="toggle-comments-btn" id="toggle-btn-${post.id}" onclick="toggleComments(${post.id})">
+                        <i class="fa-regular fa-comment"></i> <span id="comment-count-${post.id}">${totalComments}</span> comentários
+                    </button>
+                    <button class="like-btn ${post.liked ? 'liked' : ''}" id="like-btn-post-${post.id}" onclick="togglePostLike(${post.id})">
+                        ${heartSVG()}<span id="likes-count-${post.id}">${post.likes}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section" id="comments-${post.id}">
+
+            <!-- New comment input -->
+            <div class="comment-input-row">
+                <img src="${ME.avatar}" class="comment-input-avatar" alt="Você">
+                <div class="comment-input-wrap">
+                    <textarea class="comment-textarea" id="comment-textarea-${post.id}"
+                        placeholder="Escreva um comentário..."
+                        rows="1"
+                        onfocus="if(!currentUser){ this.blur(); requireAuth(); }"
+                        oninput="autoResize(this); toggleCommentActions(${post.id})"
+                        onkeydown="handleCommentKey(event, ${post.id})"></textarea>
+                    <div class="comment-input-actions" id="comment-actions-${post.id}">
+                        <button class="btn-cancel-comment" onclick="cancelComment(${post.id})">Cancelar</button>
+                        <button class="btn-post-comment" onclick="submitComment(${post.id})">Comentar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments list -->
+            <div class="comments-list" id="comments-list-${post.id}">
+                ${commentsHtml}
+            </div>
+        </div>
+    </div>`;
+}
+
+function renderAllPosts() {
+    const container = document.getElementById('posts-container');
+    container.innerHTML = INITIAL_POSTS.map(renderPost).join('');
+}
+
+/* =============================================
+   INTERACTIONS
+============================================= */
+function toggleComments(postId) {
+    const section = document.getElementById(`comments-${postId}`);
+    const btn = document.getElementById(`toggle-btn-${postId}`);
+    const isOpen = section.classList.contains('open');
+    section.classList.toggle('open', !isOpen);
+    btn.classList.toggle('active', !isOpen);
+    if (!isOpen) {
+        setTimeout(() => document.getElementById(`comment-textarea-${postId}`)?.focus(), 100);
+    }
+}
+
+function toggleCommentActions(postId) {
+    const ta = document.getElementById(`comment-textarea-${postId}`);
+    const actions = document.getElementById(`comment-actions-${postId}`);
+    if (ta.value.trim()) {
+        actions.classList.add('visible');
+    } else {
+        actions.classList.remove('visible');
+    }
+}
+
+function cancelComment(postId) {
+    const ta = document.getElementById(`comment-textarea-${postId}`);
+    const actions = document.getElementById(`comment-actions-${postId}`);
+    ta.value = '';
+    ta.style.height = '';
+    actions.classList.remove('visible');
+}
+
+function requireAuth(action) {
+    if (!currentUser) {
+        openAuthModal();
+        showToast('⚠ Faça login para interagir!');
+        return false;
+    }
+    if (action) action();
+    return true;
+}
+
+function submitComment(postId) {
+    if (!requireAuth()) return;
+    const ta = document.getElementById(`comment-textarea-${postId}`);
+    const text = ta.value.trim();
+    if (!text) return;
+
+    const post = INITIAL_POSTS.find(p => p.id === postId);
+    if (!post) return;
+
+    const newComment = {
+        id: ++commentIdCounter,
+        user: ME.name,
+        avatar: ME.avatar,
+        time: 'agora',
+        text,
+        likes: 0,
+        liked: false,
+        replies: []
+    };
+
+    post.comments.unshift(newComment);
+
+    const list = document.getElementById(`comments-list-${postId}`);
+    list.insertAdjacentHTML('afterbegin', renderComment(newComment, postId));
+
+    updateCommentCount(postId, post);
+    cancelComment(postId);
+    showToast('Comentário publicado!');
+}
+
+function handleCommentKey(e, postId) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        submitComment(postId);
+    }
+}
+
+function toggleReplyInput(postId, commentId) {
+    if (!requireAuth()) return;
+    const wrap = document.getElementById(`reply-input-${commentId}`);
+    const isOpen = wrap.classList.contains('open');
+    document.querySelectorAll('.reply-input-wrap.open').forEach(w => w.classList.remove('open'));
+    if (!isOpen) {
+        wrap.classList.add('open');
+        wrap.querySelector('.reply-textarea')?.focus();
+    }
+}
+
+function cancelReply(commentId) {
+    const wrap = document.getElementById(`reply-input-${commentId}`);
+    wrap.classList.remove('open');
+    const ta = wrap.querySelector('.reply-textarea');
+    if (ta) { ta.value = ''; ta.style.height = ''; }
+}
+
+function submitReply(postId, commentId) {
+    if (!requireAuth()) return;
+    const wrap = document.getElementById(`reply-input-${commentId}`);
+    const ta = wrap.querySelector('.reply-textarea');
+    const text = ta.value.trim();
+    if (!text) return;
+
+    const post = INITIAL_POSTS.find(p => p.id === postId);
+    const comment = post?.comments.find(c => c.id === commentId);
+    if (!comment) return;
+
+    const newReply = {
+        id: ++commentIdCounter,
+        user: ME.name,
+        avatar: ME.avatar,
+        time: 'agora',
+        text: text.startsWith('@') ? text : `@${comment.user} ${text}`,
+        likes: 0,
+        liked: false
+    };
+
+    comment.replies.push(newReply);
+
+    const repliesContainer = document.getElementById(`replies-${commentId}`);
+    repliesContainer.insertAdjacentHTML('beforeend', renderReply(newReply, commentId, postId));
+
+    updateCommentCount(postId, post);
+    cancelReply(commentId);
+    showToast('↩ Resposta publicada!');
+}
+
+function handleReplyKey(e, postId, commentId) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        submitReply(postId, commentId);
+    }
+}
+
+function updateCommentCount(postId, post) {
+    const total = post.comments.reduce((acc, c) => acc + 1 + c.replies.length, 0);
+    const el = document.getElementById(`comment-count-${postId}`);
+    if (el) el.textContent = total;
+}
+
+function togglePostLike(postId) {
+    if (!requireAuth()) return;
+    const post = INITIAL_POSTS.find(p => p.id === postId);
+    if (!post) return;
+    post.liked = !post.liked;
+    post.likes += post.liked ? 1 : -1;
+
+    const btn = document.getElementById(`like-btn-post-${postId}`);
+    const count = document.getElementById(`likes-count-${postId}`);
+    btn.classList.toggle('liked', post.liked);
+    if (count) count.textContent = post.likes;
+}
+
+function toggleCommentLike(btn, postId, commentId, replyId, isReply) {
+    if (!requireAuth()) return;
+    const post = INITIAL_POSTS.find(p => p.id === postId);
+    if (!post) return;
+    const comment = post.comments.find(c => c.id === commentId);
+    if (!comment) return;
+
+    let target = isReply ? comment.replies.find(r => r.id === replyId) : comment;
+    if (!target) return;
+
+    target.liked = !target.liked;
+    target.likes += target.liked ? 1 : -1;
+
+    btn.classList.toggle('liked', target.liked);
+    const heart = btn.querySelector('.cheart');
+    const count = btn.querySelector('.clikes');
+    if (heart) heart.textContent = target.liked ? '♥' : '♡';
+    if (count) count.textContent = target.likes;
+}
+
+function deleteComment(postId, commentId) {
+    const post = INITIAL_POSTS.find(p => p.id === postId);
+    if (!post) return;
+    post.comments = post.comments.filter(c => c.id !== commentId);
+    const el = document.getElementById(`comment-${commentId}`);
+    if (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(-10px)';
+        el.style.transition = 'all 0.2s ease';
+        setTimeout(() => el.remove(), 200);
+    }
+    updateCommentCount(postId, post);
+}
+
+function deleteReply(postId, commentId, replyId) {
+    const post = INITIAL_POSTS.find(p => p.id === postId);
+    const comment = post?.comments.find(c => c.id === commentId);
+    if (!comment) return;
+    comment.replies = comment.replies.filter(r => r.id !== replyId);
+    const el = document.getElementById(`reply-${replyId}`);
+    if (el) {
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.2s ease';
+        setTimeout(() => el.remove(), 200);
+    }
+    updateCommentCount(postId, post);
+}
+
+function deletePost(postId) {
+    const idx = INITIAL_POSTS.findIndex(p => p.id === postId);
+    if (idx === -1) return;
+    INITIAL_POSTS.splice(idx, 1);
+    const el = document.getElementById(`post-${postId}`);
+    if (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-6px)';
+        el.style.transition = 'all 0.25s ease';
+        setTimeout(() => el.remove(), 250);
+    }
+    showToast('🗑 Post removido.');
+}
+
+/* =============================================
+   NEW POST MODAL
+============================================= */
+let selectedTag = null;
+
+function openNewPostModal() {
+    if (!requireAuth()) return;
+    document.getElementById('new-post-modal').classList.add('open');
+    document.getElementById('post-body-input').focus();
+    selectedTag = null;
+    document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('post-body-input').value = '';
+}
+
+function closeNewPostModal() {
+    document.getElementById('new-post-modal').classList.remove('open');
+}
+
+function closeModalIfOverlay(e) {
+    if (e.target === document.getElementById('new-post-modal')) closeNewPostModal();
+}
+
+document.querySelectorAll('.tag-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedTag = btn.dataset.tag;
+    });
+});
+
+const TAG_LABELS = { discussao: 'Discussão', teoria: 'Teoria', colecao: 'Coleção', review: 'Review' };
+
+function submitNewPost() {
+    const bodyInput = document.getElementById('post-body-input');
+    const title = bodyInput.value.trim();
+    if (!title) { bodyInput.focus(); return; }
+
+    const tag = selectedTag || 'discussao';
+    const newPost = {
+        id: ++postIdCounter,
+        user: ME.name,
+        avatar: ME.avatar,
+        time: 'agora',
+        tag,
+        tagLabel: TAG_LABELS[tag],
+        title,
+        likes: 0,
+        liked: false,
+        comments: []
+    };
+
+    INITIAL_POSTS.unshift(newPost);
+
+    const container = document.getElementById('posts-container');
+    container.insertAdjacentHTML('afterbegin', renderPost(newPost));
+
+    closeNewPostModal();
+    showToast('🎉 Post publicado!');
+}
+
+/* =============================================
+   UTILS
+============================================= */
+function autoResize(ta) {
+    ta.style.height = 'auto';
+    ta.style.height = Math.min(ta.scrollHeight, 120) + 'px';
+}
+
+function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+let toastTimer;
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    const m = document.getElementById('toast-msg');
+    m.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+/* =============================================
+   NEWS
+============================================= */
+const allNews = [
+    {
+        category: 'comebacks', time: '1h atrás', badge: 'Comebacks', badgeClass: 'badge-comebacks',
+        title: 'ATEEZ revela tracklist de "GOLDEN HOUR: Part.5"',
+        desc: 'O 14º mini-álbum chega em 26 de junho com o lead track "Bad" — dois dias depois o grupo headlineia o British Summer Time Hyde Park, em Londres',
+        img: 'https://www.allkpop.com/upload/2026/06/content/041130/1780587022-ateez-golden-hour-part.jpg'
+    },
+    {
+        category: 'awards', time: '3h atrás', badge: 'Awards', badgeClass: 'badge-awards',
+        title: 'aespa vence no Music Bank com "WDA (Whole Different Animal)"',
+        desc: 'Primeira vitória do grupo com o novo single — destaque absoluto no episódio de 5 de junho do programa musical coreano',
+        img: 'https://entretetizei.com.br/wp-content/uploads/2024/05/Foto_reproducaoSM.jpg'
+    },
+    {
+        category: 'comebacks', time: '4d atrás', badge: 'Comebacks', badgeClass: 'badge-comebacks',
+        title: 'MAMAMOO retorna completo com "4WARD" após quase 4 anos',
+        desc: 'O single "4 Flowers" celebra a reunião das quatro integrantes depois de período focado em carreiras solo — fãs em êxtase com o comeback',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/191114_%EB%A7%88%EB%A7%88%EB%AC%B4_%EA%B8%B0%EC%9E%90_%EC%A7%88%EC%9D%98%EC%9D%91%EB%8B%B5_%EC%A0%84%EC%B2%B4%EC%98%81%EC%83%81_%28MAMAMOO_%27reality_in_BLACK%27_%EC%87%BC%EC%BC%80%EC%9D%B4%EC%8A%A4%29_3m_15s.jpg'
+    },
+    {
+        category: 'variety', time: '6d atrás', badge: 'Variety', badgeClass: 'badge-awards',
+        title: 'N.Flying lança "In Between Seasons" com novo single digital',
+        desc: 'Primeiro lançamento da banda rock desde o álbum "Everlasting" de maio de 2025 — retorno bastante aguardado pelos fãs',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsE7jtUkLjH_hgpZR9Ze-nir-z9SUxcbwhBA&s'
+    },
+    {
+        category: 'comebacks', time: '3m atrás', badge: 'Comebacks', badgeClass: 'badge-comebacks',
+        title: 'BLACKPINK quebra recorde histórico no Hanteo com "DEADLINE"',
+        desc: 'Mini-álbum vendeu mais de 1,46 milhão de cópias no primeiro dia de vendas — maior marca feminina da história do Hanteo Chart',
+        img: 'https://ofuxico.com.br/wp-content/uploads/2025/08/grupo-blackpink.jpg'
+    },
+    {
+        category: 'debuts', time: '6d atrás', badge: 'Debuts', badgeClass: 'badge-debuts',
+        title: 'VAY ONN faz debut com "MUAH!" em junho de 2026',
+        desc: 'Novo grupo estreia na cena do K-pop com MV cheio de personalidade e energia contagiante',
+        img: 'https://weblu.sgp1.cdn.digitaloceanspaces.com/sites/d2d065a1-886c-45a8-bd96-63671a94d3c7/assets/images/1780639830195593c4a80-79ff-427b-a1a2-34648136a568--.webp'
+    },
+    {
+        category: 'comebacks', time: '3m atrás', badge: 'Comebacks', badgeClass: 'badge-comebacks',
+        title: 'BTS anuncia retorno completo como grupo em março de 2026',
+        desc: 'Após o cumprimento do serviço militar por todos os integrantes, o grupo voltou às atividades plenas e agitou o mundo inteiro',
+        img: 'https://dynamicmedia.livenationinternational.com/u/f/c/9550d5b0-a658-4c4c-a893-8afe4ec2dd4d.jpg?format=webp&width=3840&quality=75'
+    },
+    {
+        category: 'awards', time: '5d atrás', badge: 'Awards', badgeClass: 'badge-awards',
+        title: "ILLIT vence no Inkigayo com \"It's Me\"",
+        desc: 'O grupo dividiu o palco com aespa e CORTIS em um dos episódios mais assistidos de 2026 — fãs comemoraram muito nas redes',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/250221_ILLIT.png/1280px-250221_ILLIT.png'
+    },
+    {
+        category: 'comebacks', time: '5m atrás', badge: 'Comebacks', badgeClass: 'badge-comebacks',
+        title: 'EXO abre 2026 com álbum "REVERXE" em 1º de janeiro',
+        desc: 'Primeiro comeback em dois anos e meio — seis dos nove membros participaram, gerando debate apaixonado entre os EXO-L do mundo todo',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Exo_monster_160618_suwon.png'
+    },
+    {
+        category: 'fashion', time: '1d atrás', badge: 'Fashion', badgeClass: 'badge-fashion',
+        title: 'Giselle (aespa) fala abertamente sobre pressão estética no K-pop',
+        desc: '"É difícil para uma estrela de K-pop ser saudável" — a idol abriu o jogo sobre os desafios físicos e emocionais da indústria',
+        img: 'https://i0.wp.com/popasiaticojpg.com/wp-content/uploads/2024/07/giselle-dopamine.png?fit=810%2C400&ssl=1'
+    },
+    {
+        category: 'debuts', time: '2m atrás', badge: 'Debuts', badgeClass: 'badge-debuts',
+        title: 'SECRET se reúne após 12 anos com nova integrante',
+        desc: 'Jun Hyoseong e Jung Hana voltam com mais um membro em comeback especial repleto de releituras exclusivas lançadas em 2026',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Kpop_World_Festival_60_%288156694381%29.jpg'
+    },
+    {
+        category: 'comebacks', time: '4m atrás', badge: 'Comebacks', badgeClass: 'badge-comebacks',
+        title: 'LE SSERAFIM retorna com novo projeto em maio de 2026',
+        desc: 'O grupo da HYBE é um dos grandes destaques do comeback schedule de maio com conceito visual totalmente renovado',
+        img: 'https://ichef.bbci.co.uk/ace/standard/3840/cpsprodpb/5889/live/a19fca70-8c79-11ef-8a4d-3d83d5927fa4.jpg'
+    },
+];
+
+const grid = document.getElementById('news-grid');
+const NEWS_PER_PAGE = 6;
+let newsCurrentPage = 0;
+let newsFiltered = [];
+
+function applyGlowColor(card) {
+    const img = card.querySelector('img');
+    if (!img) return;
+    const run = () => {
+        try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 10; canvas.height = 10;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, 10, 10);
+            const d = ctx.getImageData(0, 0, 10, 10).data;
+            let r=0,g=0,b=0,count=0;
+            for(let i=0;i<d.length;i+=4){
+                if(d[i]+d[i+1]+d[i+2]>60){r+=d[i];g+=d[i+1];b+=d[i+2];count++;}
+            }
+            if(count>0){r=Math.round(r/count);g=Math.round(g/count);b=Math.round(b/count);}
+            card.style.setProperty('--glow-color',`rgba(${r},${g},${b},0.8)`);
+        } catch(e) { card.style.setProperty('--glow-color','#a855f7'); }
+    };
+    if(img.complete) run(); else img.addEventListener('load', run);
+}
+
+function renderNewsPage() {
+    const start = newsCurrentPage * NEWS_PER_PAGE;
+    const slice = newsFiltered.slice(start, start + NEWS_PER_PAGE);
+    const totalPages = Math.ceil(newsFiltered.length / NEWS_PER_PAGE);
+
+    grid.innerHTML = slice.map((n, i) => `
+        <div class="col-md-4 mb-3 news-card-anim" style="animation-delay:${i * 0.05}s">
+            <div class="news-card">
+                <img src="${n.img}" alt="${n.title}">
+                <div class="news-card-body">
+                    <div class="news-meta">
+                        <span class="news-badge ${n.badgeClass}">${n.badge}</span>
+                        <span class="news-time"><i class="fa-regular fa-clock"></i> ${n.time}</span>
+                    </div>
+                    <p class="news-card-title">${n.title}</p>
+                    <p class="news-card-desc">${n.desc}</p>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    grid.querySelectorAll('.news-card').forEach((card, i) => {
+        applyGlowColor(card);
+        card.addEventListener('click', () => openNewsModal(slice[i]));
+    });
+
+    const prevBtn = document.getElementById('news-prev');
+    const nextBtn = document.getElementById('news-next');
+    if (prevBtn) prevBtn.disabled = newsCurrentPage === 0;
+    if (nextBtn) nextBtn.disabled = newsCurrentPage >= totalPages - 1;
+
+    const indicator = document.getElementById('news-page-indicator');
+    if (indicator) indicator.textContent = totalPages > 1 ? `${newsCurrentPage + 1} / ${totalPages}` : '';
+}
+
+/* =============================================
+   TRENDING NEWS DATA
+============================================= */
+const trendingNews = [
+    {
+        category: 'comebacks',
+        badge: 'Comeback',
+        badgeClass: 'badge-comebacks',
+        time: '1h atrás',
+        title: 'ATEEZ lança "GOLDEN HOUR: Part.5" em 26 de junho',
+        desc: 'O grupo confirma data oficial e revela primeiros teasers do aguardado quinto volume da série GOLDEN HOUR',
+        img: 'https://ffw.uol.com.br/wp-content/uploads/2023/08/new-jeans-9.jpg'
+    },
+    {
+        category: 'awards',
+        badge: 'Award',
+        badgeClass: 'badge-awards',
+        time: '2h atrás',
+        title: 'aespa vence no Music Bank com "WDA (Whole Different Animal)"',
+        desc: 'O grupo da SM Entertainment conquista mais um troféu com a faixa que domina as paradas sul-coreanas há semanas',
+        img: 'https://cdn.shopify.com/s/files/1/0469/3927/5428/files/Banner_2993ba90-7985-45e1-8636-18283e692fe1.png?v=1692708550'
+    },
+    {
+        category: 'comebacks',
+        badge: 'Record',
+        badgeClass: 'badge-comebacks',
+        time: '3h atrás',
+        title: 'DEADLINE bate recorde histórico no Hanteo Chart',
+        desc: 'Mini-álbum do BLACKPINK vendeu mais de 1,46 milhão de cópias no primeiro dia — maior marca feminina da história do Hanteo',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Blackpink_Pink_Carpet_Event_1.jpg'
+    },
+];
+
+
+function generateNewsBody(news) {
+    const bodies = {
+        comebacks: [
+            `${news.desc}. A notícia rapidamente se espalhou pelas redes sociais, com fãs ao redor do mundo expressando enorme entusiasmo e expectativa pelo lançamento.`,
+            `A equipe de produção responsável pelo projeto afirmou que este será um dos trabalhos mais ambiciosos do grupo até o momento, com um conceito visual completamente renovado e uma sonoridade que promete surpreender até os fãs mais antigos.`,
+            `Os pré-saves já estão disponíveis nas principais plataformas de streaming, e em poucas horas já ultrapassaram a marca de 500 mil, demonstrando o alcance global da base de fãs.`,
+            `Além do conteúdo musical, o grupo também confirmou uma série de aparições em programas de música e entrevistas exclusivas para celebrar o comeback. As datas exatas serão divulgadas em breve pelos canais oficiais.`,
+            `Fique ligado nas redes sociais oficiais do grupo para acompanhar todas as novidades e não perder nenhum detalhe desta era tão aguardada pela comunidade K-pop mundial.`
+        ],
+        debuts: [
+            `${news.desc}. A estreia foi recebida com grande euforia pela comunidade K-pop, que acompanhou de perto o processo de revelação dos membros e a divulgação dos teasers nas últimas semanas.`,
+            `A agência responsável pelo grupo investiu pesado na produção do MV de estreia, que conta com cenários elaborados, coreografias de alto nível e uma identidade visual marcante que já conquistou o coração de muitos fãs.`,
+            `Nas primeiras horas após o lançamento, o MV acumulou milhões de visualizações no YouTube, e a hashtag do grupo alcançou o topo dos trending topics em países como Coreia do Sul, Brasil, Estados Unidos e Filipinas.`,
+            `Críticos especializados em K-pop destacaram a maturidade e a personalidade do grupo, ressaltando que a estreia apresenta uma proposta diferenciada no cenário atual da indústria, o que pode ser um diferencial importante para conquistar novos públicos.`,
+            `Os fãs já criaram perfis dedicados nas redes sociais e comunidades online para compartilhar conteúdo e apoiar o novo grupo. O futuro parece bastante promissor para esses novos artistas.`
+        ],
+        awards: [
+            `${news.desc}. A vitória foi celebrada intensamente pelos fãs nas redes sociais, que mobilizaram votos e streams de forma organizada durante toda a semana de votação.`,
+            `Durante a cerimônia, os artistas subiram ao palco visivelmente emocionados e agradeceram aos fãs pelo apoio incondicional, dedicando o troféu a todos que acompanham a carreira do grupo desde os primeiros dias.`,
+            `Este prêmio representa um marco importante na trajetória do grupo, que vem crescendo de forma constante no mercado doméstico e internacional, conquistando cada vez mais reconhecimento da indústria.`,
+            `Especialistas do setor apontam que a conquista reflete não apenas a popularidade, mas também a qualidade musical consistente que o grupo tem apresentado ao longo das últimas eras, solidificando sua posição no topo do K-pop.`,
+            `Com esse resultado, o grupo se torna um dos fortes candidatos aos grandes prêmios de fim de ano, como o MAMA Awards e o Melon Music Awards, que prometem ser extremamente disputados em 2026.`
+        ],
+        fashion: [
+            `${news.desc}. As declarações rapidamente repercutiram na mídia especializada e nas redes sociais, gerando amplo debate sobre os padrões impostos à indústria do entretenimento sul-coreano.`,
+            `A idol falou abertamente sobre os desafios de manter a saúde física e mental em um ambiente altamente competitivo e visualmente exigente, ressaltando a importância do autocuidado e do apoio psicológico profissional.`,
+            `A postura corajosa do artista foi elogiada por especialistas em saúde mental, que destacam a importância de figuras públicas normalizarem conversas sobre bem-estar e os limites do corpo humano.`,
+            `Diversas outras personalidades do setor de entretenimento expressaram solidariedade e apoio, e a discussão iniciada abriu espaço para um debate mais amplo sobre reformas nas práticas de treinamento das grandes agências.`,
+            `Este episódio marca um momento importante de transformação cultural dentro do K-pop, que aos poucos tem caminhado para uma abordagem mais saudável e humanizada do desenvolvimento de seus artistas.`
+        ],
+        variety: [
+            `${news.desc}. O lançamento foi antecipado com grande expectativa pelos fãs, que acompanharam cada teaser e atualização divulgada pelos canais oficiais do grupo nas últimas semanas.`,
+            `O novo single traz uma sonoridade que combina elementos tradicionais da identidade musical do grupo com influências mais modernas, criando uma fusão interessante que agrada tanto ao público cativo quanto aos novos ouvintes.`,
+            `A produção musical contou com a participação de renomados compositores e produtores do mercado sul-coreano, além de colaborações internacionais que enriquecem a identidade sonora do projeto.`,
+            `Nas plataformas de streaming, a faixa principal já entrou nos charts de diversos países nas primeiras horas após o lançamento, confirmando o alcance global da base de fãs do grupo.`,
+            `O grupo prometeu uma série de atividades promocionais nas próximas semanas, incluindo apresentações ao vivo em programas de música e conteúdo exclusivo para os membros dos fanclubs oficiais.`
+        ]
+    };
+    const paragraphs = bodies[news.category] || bodies['comebacks'];
+    return paragraphs.map(p => `<p>${p}</p>`).join('');
+}
+
+function openNewsModal(news) {
+    document.getElementById('news-modal-img').src = news.img;
+    document.getElementById('news-modal-img').alt = news.title;
+    const badge = document.getElementById('news-modal-badge');
+    badge.textContent = news.badge;
+    badge.className = `news-badge ${news.badgeClass}`;
+    document.getElementById('news-modal-time').textContent = news.time;
+    document.getElementById('news-modal-title').textContent = news.title;
+    document.getElementById('news-modal-subtitle').textContent = news.desc;
+    document.getElementById('news-modal-body').innerHTML = generateNewsBody(news);
+    const overlay = document.getElementById('news-modal');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeNewsModal() {
+    document.getElementById('news-modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function closeNewsModalIfOverlay(e) {
+    if (e.target === document.getElementById('news-modal')) closeNewsModal();
+}
+
+function renderNews(filter) {
+    newsFiltered = filter === 'todos' ? allNews : allNews.filter(n => n.category === filter);
+    newsCurrentPage = 0;
+    renderNewsPage();
+}
+
+function newsPage(dir) {
+    const totalPages = Math.ceil(newsFiltered.length / NEWS_PER_PAGE);
+    newsCurrentPage = Math.max(0, Math.min(totalPages - 1, newsCurrentPage + dir));
+    renderNewsPage();
+}
+
+document.querySelectorAll('.news-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderNews(btn.dataset.filter);
+    });
+});
+
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* =============================================
+   AUTH SYSTEM
+============================================= */
+let currentUser = JSON.parse(localStorage.getItem('koreahub_user') || 'null');
+
+function updateNavProfile() {
+    const icon = document.getElementById('nav-profile-icon');
+    if (!icon) return;
+    if (currentUser) {
+        icon.className = 'fa-solid fa-circle-user';
+        icon.style.background = 'linear-gradient(135deg,#a855f7,#6366f1)';
+        icon.style.webkitBackgroundClip = 'text';
+        icon.style.webkitTextFillColor = 'transparent';
+    } else {
+        icon.className = 'fa-regular fa-circle-user';
+        icon.style.background = '';
+        icon.style.webkitBackgroundClip = '';
+        icon.style.webkitTextFillColor = '';
+    }
+}
+
+function openAuthModal() {
+    const overlay = document.getElementById('auth-modal');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('auth-error').textContent = '';
+    if (currentUser) {
+        showAuthForm('profile');
+        document.getElementById('profile-name-display').textContent = currentUser.name;
+        document.getElementById('profile-email-display').textContent = currentUser.email;
+    } else {
+        showAuthForm('login');
+    }
+}
+
+function closeAuthModal() {
+    document.getElementById('auth-modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function closeAuthIfOverlay(e) {
+    if (e.target === document.getElementById('auth-modal')) closeAuthModal();
+}
+
+function switchAuthTab(tab) {
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+    showAuthForm(tab);
+    document.getElementById('auth-error').textContent = '';
+}
+
+function showAuthForm(form) {
+    ['login','register','profile'].forEach(f => {
+        document.getElementById('form-' + f).style.display = f === form ? 'block' : 'none';
+    });
+    const tabs = document.querySelector('.auth-tabs');
+    tabs.style.display = form === 'profile' ? 'none' : 'flex';
+}
+
+function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const isText = input.type === 'text';
+    input.type = isText ? 'password' : 'text';
+    btn.querySelector('i').className = isText ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
+}
+
+function setAuthError(msg) {
+    const el = document.getElementById('auth-error');
+    el.textContent = msg;
+    el.style.display = msg ? 'block' : 'none';
+}
+
+function handleLogin() {
+    const email = document.getElementById('login-email').value.trim();
+    const pass  = document.getElementById('login-password').value;
+    if (!email || !pass) { setAuthError('Preencha todos os campos.'); return; }
+    const users = JSON.parse(localStorage.getItem('koreahub_users') || '[]');
+    const user = users.find(u => u.email === email && u.password === pass);
+    if (!user) { setAuthError('E-mail ou senha incorretos.'); return; }
+    currentUser = { name: user.name, email: user.email };
+    localStorage.setItem('koreahub_user', JSON.stringify(currentUser));
+    updateNavProfile();
+    showAuthForm('profile');
+    document.getElementById('profile-name-display').textContent = currentUser.name;
+    document.getElementById('profile-email-display').textContent = currentUser.email;
+    document.getElementById('auth-error').textContent = '';
+    showToast('✓ Bem-vindo(a), ' + currentUser.name + '!');
+}
+
+function handleRegister() {
+    const name  = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const pass  = document.getElementById('reg-password').value;
+    const pass2 = document.getElementById('reg-password2').value;
+    if (!name || !email || !pass || !pass2) { setAuthError('Preencha todos os campos.'); return; }
+    if (pass.length < 6) { setAuthError('A senha deve ter pelo menos 6 caracteres.'); return; }
+    if (pass !== pass2) { setAuthError('As senhas não coincidem.'); return; }
+    const users = JSON.parse(localStorage.getItem('koreahub_users') || '[]');
+    if (users.find(u => u.email === email)) { setAuthError('Este e-mail já está cadastrado.'); return; }
+    users.push({ name, email, password: pass });
+    localStorage.setItem('koreahub_users', JSON.stringify(users));
+    currentUser = { name, email };
+    localStorage.setItem('koreahub_user', JSON.stringify(currentUser));
+    updateNavProfile();
+    showAuthForm('profile');
+    document.getElementById('profile-name-display').textContent = currentUser.name;
+    document.getElementById('profile-email-display').textContent = currentUser.email;
+    document.getElementById('auth-error').textContent = '';
+    showToast('✓ Conta criada com sucesso!');
+}
+
+function handleLogout() {
+    currentUser = null;
+    localStorage.removeItem('koreahub_user');
+    updateNavProfile();
+    closeAuthModal();
+    showToast('Você saiu da conta.');
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeAuthModal();
+        closeNewsModal();
+    }
+});
+
+updateNavProfile();
+
+/* =============================================
+   INIT
+============================================= */
+renderNews('todos');
+renderAllPosts();
+</script>
+
+</body>
+</html>
