@@ -1095,7 +1095,7 @@
    DATA
 ============================================= */
 const ME = { name: 'Você', avatar: 'https://picsum.photos/seed/me/80/80' };
-let postIdCounter = 10;
+let postIdCounter = 38;
 let commentIdCounter = 200;
 
 const TAG_LABELS = {
@@ -1160,6 +1160,306 @@ const INITIAL_POSTS = [
         preview: 'Segundo fontes do Starship Entertainment, o IVE está finalizando as gravações do MV e o álbum está previsto para julho. Alguém mais animado demais?',
         likes: 133, liked: false,
         comments: []
+    },
+    {
+        id: 7, user: 'AteezAtiny', avatar: 'https://picsum.photos/seed/user7/80/80',
+        time: '6h atrás', tag: 'discussao', hot: true,
+        title: 'GOLDEN HOUR: Part.5 já tem prévia da faixa-título?',
+        preview: 'Vi um clipe de 15 segundos circulando nas redes sociais que parece ser da nova música "Bad". O som tá completamente diferente do que eles já fizeram, alguém mais ouviu?',
+        likes: 78, liked: false,
+        comments: [
+            { id: 5, user: 'KpopLover_99', avatar: 'https://picsum.photos/seed/user1/80/80', time: '4h atrás', text: 'Sim! Ouvi também, parece ter influência de rock alternativo. Bem diferente da pegada deles em "Golden Hour P.4".', likes: 14, liked: false, replies: [
+                { id: 102, user: 'AteezAtiny', avatar: 'https://picsum.photos/seed/user7/80/80', time: '3h atrás', text: '@KpopLover_99 EXATO! Tô tão curiosa pra ouvir a versão completa 😭', likes: 6, liked: false }
+            ]},
+            { id: 6, user: 'StrayKidsLover', avatar: 'https://picsum.photos/seed/user4/80/80', time: '2h atrás', text: 'Eles sempre surpreendem com a sonoridade, confio na qualidade!', likes: 9, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 8, user: 'MinhaEraNewJeans', avatar: 'https://picsum.photos/seed/user8/80/80',
+        time: '8h atrás', tag: 'colecao', hot: false,
+        title: 'Minha coleção de álbuns chegou a 50! 🎉',
+        preview: 'Depois de 2 anos colecionando, finalmente completei minha estante com 50 álbuns diferentes! Photo dump nos comentários pra quem quiser ver. Qual grupo vocês mais colecionam?',
+        likes: 201, liked: false,
+        comments: [
+            { id: 7, user: 'NewJeansFan', avatar: 'https://picsum.photos/seed/user3/80/80', time: '5h atrás', text: 'Que inveja boa! Eu coleciono mais NewJeans e LE SSERAFIM, mas ainda tô longe desse número haha', likes: 11, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 9, user: 'CortisFanBR', avatar: 'https://picsum.photos/seed/user9/80/80',
+        time: '12h atrás', tag: 'review', hot: false,
+        title: 'Review: CORTIS no Inkigayo foi surreal',
+        preview: 'A performance deles dividindo o palco com aespa e ILLIT foi uma das melhores que já vi este ano. A energia do grupo e a sincronia das coreografias estavam impecáveis, recomendo muito assistir!',
+        likes: 96, liked: false,
+        comments: []
+    },
+    {
+        id: 10, user: 'EXOPlanetGirl', avatar: 'https://picsum.photos/seed/user10/80/80',
+        time: '1d atrás', tag: 'teoria', hot: false,
+        title: 'O que significam os easter eggs do álbum REVERXE?',
+        preview: 'Reparei vários símbolos repetidos no encarte do álbum que parecem remeter a eras antigas do grupo. Será que é uma deixa pra uma reunião completa com os 9 membros em breve?',
+        likes: 58, liked: false,
+        comments: [
+            { id: 8, user: 'BtsArmy2023', avatar: 'https://picsum.photos/seed/user2/80/80', time: '20h atrás', text: 'Espero muito que sim! Seria emocionante ver os 9 juntos de novo.', likes: 13, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 11, user: 'LeSserafimQueen', avatar: 'https://picsum.photos/seed/user11/80/80',
+        time: '2d atrás', tag: 'noticia', hot: true,
+        title: 'LE SSERAFIM anuncia world tour para o segundo semestre',
+        preview: 'A HYBE confirmou oficialmente as datas da nova turnê mundial, com shows na Ásia, América do Norte e Europa. Quem vai tentar pegar ingresso?',
+        likes: 167, liked: false,
+        comments: []
+    },
+    {
+        id: 12, user: 'FansignHunter', avatar: 'https://picsum.photos/seed/user12/80/80',
+        time: '3d atrás', tag: 'fansign', hot: false,
+        title: 'Relato: fansign presencial do ILLIT em São Paulo',
+        preview: 'Consegui participar do primeiro fansign do grupo no Brasil! A organização foi ótima e as integrantes foram super atenciosas com cada fã. Valeu muito a espera na fila!',
+        likes: 142, liked: false,
+        comments: [
+            { id: 9, user: 'SeraFoxnn', avatar: 'https://picsum.photos/seed/user5/80/80', time: '2d atrás', text: 'Que demais! Fiquei sabendo que a fila tava enorme, foi tranquilo?', likes: 4, liked: false, replies: [
+                { id: 103, user: 'FansignHunter', avatar: 'https://picsum.photos/seed/user12/80/80', time: '2d atrás', text: '@SeraFoxnn Foi bem organizado, demorou umas 3h mas valeu super a pena!', likes: 3, liked: false }
+            ]}
+        ]
+    },
+    {
+        id: 13, user: 'TxtMoaBR', avatar: 'https://picsum.photos/seed/user13/80/80',
+        time: '30min atrás', tag: 'discussao', hot: true,
+        title: 'Qual track de "The Star Chapter" é subestimada?',
+        preview: 'Sinto que algumas faixas do álbum não tiveram o reconhecimento que mereciam. Pra mim "Growing Pain" é uma obra-prima escondida. Quais vocês acham que merecem mais destaque?',
+        likes: 34, liked: false,
+        comments: []
+    },
+    {
+        id: 14, user: 'GidleNeverland', avatar: 'https://picsum.photos/seed/user14/80/80',
+        time: '1h atrás', tag: 'noticia', hot: true,
+        title: '(G)I-DLE confirma nova música para trilha de drama',
+        preview: 'A agência confirmou que o grupo vai lançar uma OST exclusiva para o novo drama da tvN que estreia em agosto. Miyeon será a vocalista principal da faixa.',
+        likes: 88, liked: false,
+        comments: [
+            { id: 10, user: 'TxtMoaBR', avatar: 'https://picsum.photos/seed/user13/80/80', time: '40min atrás', text: 'Ansiosa demais! A voz da Miyeon em OSTs sempre é incrível.', likes: 6, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 15, user: 'RizeSoyeon', avatar: 'https://picsum.photos/seed/user15/80/80',
+        time: '2h atrás', tag: 'review', hot: false,
+        title: 'RIIZE ao vivo em São Paulo — vale a pena?',
+        preview: 'Fui no show de ontem e quero compartilhar minhas impressões! O setlist foi bem variado, misturando hits e faixas menos conhecidas. A produção visual também surpreendeu bastante.',
+        likes: 71, liked: false,
+        comments: []
+    },
+    {
+        id: 16, user: 'PhotocardTrader', avatar: 'https://picsum.photos/seed/user16/80/80',
+        time: '3h atrás', tag: 'colecao', hot: false,
+        title: 'Troca de photocards — Stray Kids e ATEEZ',
+        preview: 'Tenho photocards duplicados do Felix e do Hongjoong que estou disposta a trocar por membros do TXT ou Seventeen. Quem tiver interesse, comenta aqui!',
+        likes: 19, liked: false,
+        comments: [
+            { id: 11, user: 'AteezAtiny', avatar: 'https://picsum.photos/seed/user7/80/80', time: '2h atrás', text: 'Tenho um Hoshi de Seventeen! Vamos trocar?', likes: 2, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 17, user: 'ZB1Forever', avatar: 'https://picsum.photos/seed/user17/80/80',
+        time: '4h atrás', tag: 'teoria', hot: false,
+        title: 'ZEROBASEONE vai ter comeback conceitual em 2026?',
+        preview: 'Pelos teasers que vazaram, parece que o grupo vai explorar um conceito mais maduro e escuro dessa vez, bem diferente do que já fizeram. Será uma virada de chave na carreira deles?',
+        likes: 42, liked: false,
+        comments: []
+    },
+    {
+        id: 18, user: 'KpopNewsBR', avatar: 'https://picsum.photos/seed/user18/80/80',
+        time: '5h atrás', tag: 'noticia', hot: false,
+        title: 'TWICE anuncia 10º aniversário com box especial',
+        preview: 'Para celebrar uma década de carreira, a JYP vai lançar uma caixa colecionável com itens exclusivos, photobook e um CD com versões raras de B-sides.',
+        likes: 156, liked: false,
+        comments: [
+            { id: 12, user: 'PhotocardTrader', avatar: 'https://picsum.photos/seed/user16/80/80', time: '4h atrás', text: 'Já separei o dinheiro pra essa box, vai ser incrível com certeza!', likes: 9, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 19, user: 'BabyMonsterFan', avatar: 'https://picsum.photos/seed/user19/80/80',
+        time: '6h atrás', tag: 'discussao', hot: false,
+        title: 'BABYMONSTER já tem identidade musical própria?',
+        preview: 'Saindo da sombra do BLACKPINK, sinto que o grupo está construindo um som único, mais enérgico e divertido. O que vocês acham da evolução deles até agora?',
+        likes: 63, liked: false,
+        comments: []
+    },
+    {
+        id: 20, user: 'EnhypenEngene', avatar: 'https://picsum.photos/seed/user20/80/80',
+        time: '7h atrás', tag: 'review', hot: false,
+        title: 'Review do álbum mais recente do ENHYPEN',
+        preview: 'A produção musical está em outro nível! Cada faixa tem uma identidade própria, mas mantém a coesão do conceito geral. O encerramento do álbum me deu um nó na garganta.',
+        likes: 99, liked: false,
+        comments: [
+            { id: 13, user: 'GidleNeverland', avatar: 'https://picsum.photos/seed/user14/80/80', time: '6h atrás', text: 'Concordo plenamente! A última faixa é simplesmente perfeita.', likes: 7, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 21, user: 'NctzenLove', avatar: 'https://picsum.photos/seed/user21/80/80',
+        time: '8h atrás', tag: 'fansign', hot: false,
+        title: 'Experiência no fansign virtual do NCT DREAM',
+        preview: 'Foi minha primeira vez participando de um fansign online e foi emocionante demais! O Jaemin foi super carinhoso e respondeu minha pergunta com muito carinho. Recomendo participar!',
+        likes: 47, liked: false,
+        comments: []
+    },
+    {
+        id: 22, user: 'KissOfLifeBR', avatar: 'https://picsum.photos/seed/user22/80/80',
+        time: '10h atrás', tag: 'noticia', hot: false,
+        title: 'KISS OF LIFE anuncia primeira turnê pela América Latina',
+        preview: 'O grupo confirmou datas no Brasil, Chile e México para o segundo semestre de 2026. Será a primeira vez que o grupo se apresenta na região!',
+        likes: 121, liked: false,
+        comments: [
+            { id: 14, user: 'EnhypenEngene', avatar: 'https://picsum.photos/seed/user20/80/80', time: '9h atrás', text: 'Finalmente! Esperando essa notícia há muito tempo.', likes: 8, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 23, user: 'AtzMoa', avatar: 'https://picsum.photos/seed/user23/80/80',
+        time: '12h atrás', tag: 'discussao', hot: false,
+        title: 'Qual coreografia de ATEEZ é a mais difícil de aprender?',
+        preview: 'Estou tentando aprender as coreografias do grupo e "Guerrilla" está sendo bem desafiadora. Vocês têm dicas de tutoriais bons pra praticar em casa?',
+        likes: 28, liked: false,
+        comments: []
+    },
+    {
+        id: 24, user: 'StayForeverKR', avatar: 'https://picsum.photos/seed/user24/80/80',
+        time: '14h atrás', tag: 'teoria', hot: false,
+        title: 'Easter eggs escondidos no MV mais recente do Stray Kids',
+        preview: 'Reparei vários detalhes visuais que conectam com álbuns anteriores, principalmente referências ao universo "5-STAR". Alguém mais notou esses padrões?',
+        likes: 51, liked: false,
+        comments: [
+            { id: 15, user: 'AtzMoa', avatar: 'https://picsum.photos/seed/user23/80/80', time: '13h atrás', text: 'Sim! O número que aparece no fundo da cena 2 parece ser uma data importante.', likes: 5, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 25, user: 'IveDive', avatar: 'https://picsum.photos/seed/user25/80/80',
+        time: '16h atrás', tag: 'colecao', hot: false,
+        title: 'Unboxing do álbum especial de aniversário do IVE',
+        preview: 'Acabei de receber a versão limitada do álbum e os extras são incríveis! Vem com um mini photobook exclusivo e um pôster holográfico. Vale muito o investimento.',
+        likes: 84, liked: false,
+        comments: []
+    },
+    {
+        id: 26, user: 'PentagonUniverse', avatar: 'https://picsum.photos/seed/user26/80/80',
+        time: '18h atrás', tag: 'noticia', hot: false,
+        title: 'PENTAGON pode ter reunião completa em 2026',
+        preview: 'Rumores indicam que a Cube Entertainment está negociando uma reunião completa do grupo para celebrar o aniversário de debut. Alguém mais com esperança?',
+        likes: 39, liked: false,
+        comments: [
+            { id: 16, user: 'StayForeverKR', avatar: 'https://picsum.photos/seed/user24/80/80', time: '17h atrás', text: 'Seria incrível! Eles têm uma química única no palco.', likes: 4, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 27, user: 'XGFever', avatar: 'https://picsum.photos/seed/user27/80/80',
+        time: '20h atrás', tag: 'review', hot: false,
+        title: 'XG impressiona em apresentação ao vivo no Japão',
+        preview: 'A energia do grupo no palco é simplesmente inigualável. As vocais ao vivo estavam impecáveis e a coreografia sincronizada deixou todo mundo de boca aberta.',
+        likes: 73, liked: false,
+        comments: []
+    },
+    {
+        id: 28, user: 'TreasureMaker', avatar: 'https://picsum.photos/seed/user28/80/80',
+        time: '22h atrás', tag: 'discussao', hot: false,
+        title: 'TREASURE merece mais reconhecimento internacional?',
+        preview: 'Sinto que o grupo tem um potencial gigante que não é totalmente explorado pela agência fora da Ásia. O que vocês pensam sobre as estratégias de promoção deles?',
+        likes: 56, liked: false,
+        comments: [
+            { id: 17, user: 'XGFever', avatar: 'https://picsum.photos/seed/user27/80/80', time: '21h atrás', text: 'Concordo! As vocais e dança deles merecem muito mais destaque global.', likes: 6, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 29, user: 'JypnLover', avatar: 'https://picsum.photos/seed/user29/80/80',
+        time: '1d atrás', tag: 'fansign', hot: false,
+        title: 'Dicas para conseguir vaga em fansigns da JYP',
+        preview: 'Depois de várias tentativas, finalmente entendi o sistema de sorteio! Vou compartilhar algumas dicas de como aumentar suas chances comprando os álbuns certos.',
+        likes: 65, liked: false,
+        comments: []
+    },
+    {
+        id: 30, user: 'AespaMyWorld', avatar: 'https://picsum.photos/seed/user30/80/80',
+        time: '1d atrás', tag: 'noticia', hot: true,
+        title: 'aespa anuncia colaboração surpresa com artista internacional',
+        preview: 'A SM confirmou que o grupo vai lançar uma versão remix de "WDA" com participação de um artista pop ocidental. O anúncio oficial sai na próxima semana!',
+        likes: 187, liked: false,
+        comments: [
+            { id: 18, user: 'JypnLover', avatar: 'https://picsum.photos/seed/user29/80/80', time: '23h atrás', text: 'Que notícia incrível! Espero que seja alguém que combine bem com o estilo do grupo.', likes: 11, liked: false, replies: [
+                { id: 104, user: 'AespaMyWorld', avatar: 'https://picsum.photos/seed/user30/80/80', time: '22h atrás', text: '@JypnLover com certeza! Vamos aguardar o anúncio oficial 🤞', likes: 4, liked: false }
+            ]}
+        ]
+    },
+    {
+        id: 31, user: 'ItzyMidzy', avatar: 'https://picsum.photos/seed/user31/80/80',
+        time: '1d atrás', tag: 'discussao', hot: false,
+        title: 'Qual foi o melhor conceito visual do ITZY até agora?',
+        preview: 'Cada era do grupo tem uma estética muito marcante. Pra mim, "Cheshire" continua sendo o auge visual deles. Quais conceitos vocês mais gostaram?',
+        likes: 37, liked: false,
+        comments: []
+    },
+    {
+        id: 32, user: 'OnewaysGlobal', avatar: 'https://picsum.photos/seed/user32/80/80',
+        time: '1d atrás', tag: 'review', hot: false,
+        title: 'Review: showcase de debut do ONEWE — impressões',
+        preview: 'Assisti à transmissão do showcase e fiquei impressionada com a maturidade musical do grupo desde o início. As performances ao vivo já estão muito bem trabalhadas.',
+        likes: 29, liked: false,
+        comments: [
+            { id: 19, user: 'ItzyMidzy', avatar: 'https://picsum.photos/seed/user31/80/80', time: '23h atrás', text: 'Já vi alguns clipes, parece bem promissor!', likes: 3, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 33, user: 'CravityZone', avatar: 'https://picsum.photos/seed/user33/80/80',
+        time: '2d atrás', tag: 'colecao', hot: false,
+        title: 'Minha estante temática de CRAVITY — fotos',
+        preview: 'Levei meses organizando minha coleção por cores e eras. Cada prateleira representa um álbum diferente. Adoraria ver as coleções de vocês também!',
+        likes: 41, liked: false,
+        comments: []
+    },
+    {
+        id: 34, user: 'KepubeauTea', avatar: 'https://picsum.photos/seed/user34/80/80',
+        time: '2d atrás', tag: 'teoria', hot: false,
+        title: 'Será que Kep1er vai ter extensão de contrato?',
+        preview: 'Com o contrato do projeto se aproximando do fim, fãs especulam se as integrantes vão continuar juntas como grupo independente. Existe algum indício oficial sobre isso?',
+        likes: 33, liked: false,
+        comments: [
+            { id: 20, user: 'CravityZone', avatar: 'https://picsum.photos/seed/user33/80/80', time: '1d atrás', text: 'Espero muito que sim, seria uma pena terminar agora.', likes: 5, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 35, user: 'P1HarmonyVibes', avatar: 'https://picsum.photos/seed/user35/80/80',
+        time: '2d atrás', tag: 'noticia', hot: false,
+        title: 'P1Harmony confirma participação em festival internacional',
+        preview: 'O grupo vai se apresentar em um dos maiores festivais de música da Europa neste verão, ao lado de outros artistas asiáticos. Grande oportunidade de visibilidade!',
+        likes: 48, liked: false,
+        comments: []
+    },
+    {
+        id: 36, user: 'WoollimGirls', avatar: 'https://picsum.photos/seed/user36/80/80',
+        time: '3d atrás', tag: 'discussao', hot: false,
+        title: 'Grupos de gerações antigas que merecem reunião',
+        preview: 'Sempre penso em quais grupos clássicos mereciam uma reunião especial para aniversários redondos. Quais vocês escolheriam se pudessem decidir?',
+        likes: 44, liked: false,
+        comments: [
+            { id: 21, user: 'P1HarmonyVibes', avatar: 'https://picsum.photos/seed/user35/80/80', time: '2d atrás', text: 'SHINee com certeza! A química deles é atemporal.', likes: 9, liked: false, replies: [] }
+        ]
+    },
+    {
+        id: 37, user: 'DreamcatcherDmc', avatar: 'https://picsum.photos/seed/user37/80/80',
+        time: '3d atrás', tag: 'review', hot: false,
+        title: 'Show acústico do Dreamcatcher foi surpreendente',
+        preview: 'Quem diria que um grupo conhecido pelo som mais pesado conseguiria entregar uma performance acústica tão emocionante? As vocais ficaram em destaque total.',
+        likes: 52, liked: false,
+        comments: []
+    },
+    {
+        id: 38, user: 'CignetureGen5',
+        avatar: 'https://picsum.photos/seed/user38/80/80',
+        time: '4d atrás', tag: 'fansign', hot: false,
+        title: 'Primeiro fansign de grupo de quinta geração que participei',
+        preview: 'Foi uma experiência incrível ver de perto como os novos grupos lidam com a fama tão jovens. Todas as integrantes foram extremamente gentis e atenciosas com os fãs.',
+        likes: 35, liked: false,
+        comments: [
+            { id: 22, user: 'DreamcatcherDmc', avatar: 'https://picsum.photos/seed/user37/80/80', time: '3d atrás', text: 'Que demais! Conta mais detalhes de como foi a organização?', likes: 2, liked: false, replies: [
+                { id: 105, user: 'CignetureGen5', avatar: 'https://picsum.photos/seed/user38/80/80', time: '3d atrás', text: '@DreamcatcherDmc Foi por ordem de chegada, fila organizada e cada fã teve cerca de 10 segundos com cada integrante!', likes: 1, liked: false }
+            ]}
+        ]
     },
 ];
 

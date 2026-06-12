@@ -166,22 +166,44 @@
 
         <!-- Coluna direita -->
         <div class="col-lg-4">
-            <div class="votacao-card">
+            <div class="votacao-card" id="votacao-card">
                 <h5 class="votacao-title">🏆 Votação da Semana</h5>
                 <p class="votacao-question">Melhor comeback de 2026 até agora?</p>
-                <div class="voto-item">
-                    <div class="voto-label"><span>BLACKPINK – DEADLINE</span><span>42%</span></div>
-                    <div class="voto-bar"><div class="voto-fill" style="width:42%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
+
+                <!-- Opções clicáveis (estado pré-voto) -->
+                <div id="votacao-options">
+                    <div class="voto-option" id="voto-option-0" onclick="selectVoteOption(0)">
+                        <span class="voto-radio" id="voto-radio-0"></span>
+                        <span class="voto-option-label">BLACKPINK – DEADLINE</span>
+                    </div>
+                    <div class="voto-option" id="voto-option-1" onclick="selectVoteOption(1)">
+                        <span class="voto-radio" id="voto-radio-1"></span>
+                        <span class="voto-option-label">ATEEZ – GOLDEN HOUR P.5</span>
+                    </div>
+                    <div class="voto-option" id="voto-option-2" onclick="selectVoteOption(2)">
+                        <span class="voto-radio" id="voto-radio-2"></span>
+                        <span class="voto-option-label">aespa – WDA</span>
+                    </div>
                 </div>
-                <div class="voto-item mt-4">
-                    <div class="voto-label"><span>ATEEZ – GOLDEN HOUR P.5</span><span>35%</span></div>
-                    <div class="voto-bar"><div class="voto-fill" style="width:35%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
+
+                <!-- Barras de resultado (estado pós-voto) -->
+                <div id="votacao-results" style="display:none;">
+                    <div class="voto-item" id="voto-0">
+                        <div class="voto-label"><span>BLACKPINK – DEADLINE</span><span id="voto-pct-0">42%</span></div>
+                        <div class="voto-bar"><div class="voto-fill" id="voto-bar-0" style="width:0%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
+                    </div>
+                    <div class="voto-item mt-3" id="voto-1">
+                        <div class="voto-label"><span>ATEEZ – GOLDEN HOUR P.5</span><span id="voto-pct-1">35%</span></div>
+                        <div class="voto-bar"><div class="voto-fill" id="voto-bar-1" style="width:0%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
+                    </div>
+                    <div class="voto-item mt-3" id="voto-2">
+                        <div class="voto-label"><span>aespa – WDA</span><span id="voto-pct-2">23%</span></div>
+                        <div class="voto-bar"><div class="voto-fill" id="voto-bar-2" style="width:0%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
+                    </div>
                 </div>
-                <div class="voto-item mt-4">
-                    <div class="voto-label"><span>aespa – WDA</span><span>23%</span></div>
-                    <div class="voto-bar"><div class="voto-fill" style="width:23%;background:linear-gradient(90deg,#ff4fd8,#a855f7)"></div></div>
-                </div>
-                <p class="votacao-total">2.341 votos totais</p>
+
+                <p class="votacao-total" id="votacao-total" style="display:none;">2.341 votos totais</p>
+                <button class="btn-vote" id="btn-vote-confirm" onclick="handleVote()" disabled>Clique para votar</button>
             </div>
 
             <div class="contributors-card mt-4">
@@ -201,6 +223,7 @@
             <span class="modal-title">✏️ Nova Publicação</span>
             <button class="modal-close" onclick="closeNewPostModal()">✕</button>
         </div>
+        <input type="text" class="modal-title-input" id="post-title-input" placeholder="Título da publicação" maxlength="120">
         <textarea class="modal-textarea" id="post-body-input" placeholder="O que você quer compartilhar?"></textarea>
         <div class="modal-tag-select" id="tag-selector">
             <button class="tag-btn" data-tag="discussao">Discussão</button>
@@ -339,7 +362,9 @@ const INITIAL_POSTS = [
         time: '3h atrás',
         tag: 'discussao',
         tagLabel: 'Discussão',
+        hot: true,
         title: 'Qual foi a melhor era do TXT?',
+        preview: 'Quero saber a opinião de vocês! Pra mim foi a era "The Chaos Chapter" mas muitos amigos meus preferem "The Dream Chapter". Comentem qual é a favorita de vocês e por quê! 🦉',
         likes: 45,
         liked: false,
         comments: [
@@ -365,7 +390,9 @@ const INITIAL_POSTS = [
         time: '5h atrás',
         tag: 'teoria',
         tagLabel: 'Teoria',
+        hot: true,
         title: 'Teorias sobre o próximo comeback do BTS',
+        preview: 'Com os membros voltando do serviço militar um a um, já começam as especulações! Acredito que o comeback em grupo será marcado para o segundo semestre de 2026. O que vocês acham que vem aí?',
         likes: 67,
         liked: false,
         comments: [
@@ -383,7 +410,9 @@ const INITIAL_POSTS = [
         time: '1d atrás',
         tag: 'colecao',
         tagLabel: 'Coleção',
+        hot: false,
         title: 'Alguém conseguiu os photocards novos?',
+        preview: 'Comprei o álbum OMG versão Bluebook e não saiu nenhuma Hanni... já abri 3 cópias. Alguém sabe de alguma loja que vende photocards avulsos sem preço abusivo?',
         likes: 112,
         liked: false,
         comments: []
@@ -395,7 +424,9 @@ const INITIAL_POSTS = [
         time: '2d atrás',
         tag: 'review',
         tagLabel: 'Review',
+        hot: false,
         title: 'Stray Kids no Music Bank - REACTION',
+        preview: 'Assisti ao vivo e foi incrível! A performance deles de "Miroh" foi absurda, energia no teto do início ao fim. Vale muito assistir ao VT completo que postaram no canal oficial.',
         likes: 89,
         liked: false,
         comments: []
@@ -485,9 +516,11 @@ function renderPost(post) {
                     <span class="disc-user">${post.user}</span>
                     <span class="disc-time">${post.time}</span>
                     <span class="disc-badge badge-${post.tag}">${post.tagLabel}</span>
+                    ${post.hot ? '<span class="disc-hot">🔥 Hot</span>' : ''}
                     ${post.user === ME.name ? `<button class="comment-delete-btn ms-auto" onclick="event.stopPropagation();deletePost(${post.id})">🗑</button>` : ''}
                 </div>
                 <p class="disc-title">${escapeHtml(post.title)}</p>
+                ${post.preview ? `<p class="disc-preview">${escapeHtml(post.preview)}</p>` : ''}
                 <div class="disc-stats" onclick="event.stopPropagation()">
                     <button class="toggle-comments-btn" id="toggle-btn-${post.id}" onclick="toggleComments(${post.id})">
                         <i class="fa-regular fa-comment"></i> <span id="comment-count-${post.id}">${totalComments}</span> comentários
@@ -756,9 +789,10 @@ let selectedTag = null;
 function openNewPostModal() {
     if (!requireAuth()) return;
     document.getElementById('new-post-modal').classList.add('open');
-    document.getElementById('post-body-input').focus();
+    document.getElementById('post-title-input').focus();
     selectedTag = null;
     document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('post-title-input').value = '';
     document.getElementById('post-body-input').value = '';
 }
 
@@ -781,9 +815,11 @@ document.querySelectorAll('.tag-btn').forEach(btn => {
 const TAG_LABELS = { discussao: 'Discussão', teoria: 'Teoria', colecao: 'Coleção', review: 'Review' };
 
 function submitNewPost() {
+    const titleInput = document.getElementById('post-title-input');
     const bodyInput = document.getElementById('post-body-input');
-    const title = bodyInput.value.trim();
-    if (!title) { bodyInput.focus(); return; }
+    const title = titleInput.value.trim();
+    const preview = bodyInput.value.trim();
+    if (!title) { titleInput.focus(); return; }
 
     const tag = selectedTag || 'discussao';
     const newPost = {
@@ -793,7 +829,9 @@ function submitNewPost() {
         time: 'agora',
         tag,
         tagLabel: TAG_LABELS[tag],
+        hot: false,
         title,
+        preview,
         likes: 0,
         liked: false,
         comments: []
@@ -1228,6 +1266,69 @@ document.addEventListener('keydown', e => {
 });
 
 updateNavProfile();
+
+/* =============================================
+   VOTAÇÃO
+============================================= */
+const VOTO_OPTIONS = [
+    { label: 'BLACKPINK – DEADLINE', votes: 985 },
+    { label: 'ATEEZ – GOLDEN HOUR P.5', votes: 820 },
+    { label: 'aespa – WDA', votes: 536 }
+];
+let totalVotes = 2341;
+let hasVoted = false;
+let selectedVote = null;
+
+function selectVoteOption(idx) {
+    if (hasVoted) return;
+    if (!requireAuth()) return;
+    selectedVote = idx;
+    document.querySelectorAll('.voto-option').forEach((el, i) => {
+        el.classList.toggle('selected', i === idx);
+    });
+    document.getElementById('btn-vote-confirm').disabled = false;
+}
+
+function handleVote() {
+    if (!requireAuth()) return;
+    if (hasVoted) { showToast('Você já votou esta semana!'); return; }
+    if (selectedVote === null) { showToast('⚠ Selecione uma opção para votar.'); return; }
+
+    VOTO_OPTIONS[selectedVote].votes += 1;
+    totalVotes += 1;
+    hasVoted = true;
+
+    const total = VOTO_OPTIONS.reduce((a, v) => a + v.votes, 0);
+
+    document.getElementById('votacao-options').style.display = 'none';
+    document.getElementById('votacao-results').style.display = 'block';
+    document.getElementById('votacao-total').style.display = 'block';
+
+    VOTO_OPTIONS.forEach((opt, i) => {
+        const pct = Math.round(opt.votes / total * 100);
+        document.getElementById(`voto-pct-${i}`).textContent = pct + '%';
+        if (i === selectedVote) {
+            document.getElementById(`voto-bar-${i}`).style.background = 'linear-gradient(90deg,#ff4fd8,#a855f7)';
+            document.getElementById(`voto-pct-${i}`).style.color = '#ff4fd8';
+            document.getElementById(`voto-pct-${i}`).style.fontWeight = '700';
+        } else {
+            document.getElementById(`voto-bar-${i}`).style.background = 'rgba(255,255,255,0.2)';
+        }
+        setTimeout(() => {
+            document.getElementById(`voto-bar-${i}`).style.width = pct + '%';
+        }, 60);
+    });
+
+    document.getElementById('votacao-total').textContent = totalVotes.toLocaleString('pt-BR') + ' votos totais';
+
+    const btn = document.getElementById('btn-vote-confirm');
+    btn.textContent = 'Voto registrado ✓';
+    btn.style.background = 'linear-gradient(90deg,#34d399,#059669)';
+    btn.style.boxShadow = '0 4px 14px rgba(52,211,153,0.3)';
+    btn.disabled = false;
+
+    showToast('✓ Seu voto foi registrado!');
+}
 
 /* =============================================
    INIT
